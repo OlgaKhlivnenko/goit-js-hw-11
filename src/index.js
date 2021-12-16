@@ -1,5 +1,4 @@
-// import '../css/styles.css';
-
+import './css/styles.css';
 
 import APIService from './api-service';
 import SimpleLightbox from "simplelightbox";
@@ -21,14 +20,16 @@ function onSearch(evt) {
   evt.preventDefault();
   
   apiService.searchQuery = evt.target.elements.searchQuery.value;
-  if (apiService.searchQuery === '') {
-    return
+  const valueInput = apiService.searchQuery.trim()
+  if (valueInput === '') {
+    return 
   }
   btnLoadMore.setAttribute(`disabled`, true);
 
   apiService.resetPage();
   apiService.fetchHits()
     .then(hits => {
+      console.log(hits);
       galleryConteiner.innerHTML = '';
       markupCards(hits);
       btnLoadMore.removeAttribute(`disabled`, true);
@@ -41,12 +42,12 @@ function onLoadMore() {
 
 function markupCards(hits) {
    
-   galleryConteiner.innerHTML = hits
+  const markup = hits
         .map(({ webformatURL, largeImageURL, likes, views, comments, downloads, }) =>
         {
-          return `<a class="gallery__item" href="${largeImageURL}">
+          return `
             <div class="photo-card">
-            
+   <a class="gallery__item" href="${largeImageURL}">         
   <img src="${webformatURL}" alt="" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -66,6 +67,9 @@ function markupCards(hits) {
     ${downloads}
     </p>
   </div>
-</div></a>`;}).join('');
+  </a>
+</div>`;
+        }).join('');
+  galleryConteiner.insertAdjacentHTML('beforeend', markup);
 };
 const lightbox = new SimpleLightbox('.gallery a');
