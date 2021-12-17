@@ -118,6 +118,7 @@ input {
   margin-right: 0;
 }
 .gallery__item {
+  flex: 1;
   height: auto;
   width: 100%;
   text-decoration: none;
