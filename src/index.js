@@ -28,8 +28,13 @@ function onSearch(evt) {
   apiService.resetPage();
   apiService.fetchHits()
     .then(data => {
-       const allFreeImg = data.totalHits;
-    Notiflix.Notify.success(`Hooray! We found ${allFreeImg} images`);
+      const allFreeImg = data.totalHits;
+      const perPage = 40;
+      Notiflix.Notify.success(`Hooray! We found ${allFreeImg} images`);
+      const endImg = allFreeImg / perPage
+      if (endImg <= 1) {
+       Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")}
+      console.log(endImg);
       galleryConteiner.innerHTML = '';
       const hits = data.hits;
       markupCards(hits);
