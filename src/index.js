@@ -13,7 +13,7 @@ const apiService = new APIService;
 
 formEl.addEventListener('submit', onSearch);
 btnLoadMore.addEventListener('click', onLoadMore);
-btnLoadMore.setAttribute(`disabled`, true);
+// btnLoadMore.style.display = 'none';
 
 function onSearch(evt) {
   evt.preventDefault();
@@ -23,7 +23,7 @@ function onSearch(evt) {
   if (valueInput === '') {
     return 
   }
-  btnLoadMore.setAttribute(`disabled`, true);
+  // btnLoadMore.style.display = 'none';
 
   apiService.resetPage();
   apiService.fetchHits()
@@ -33,12 +33,14 @@ function onSearch(evt) {
       Notiflix.Notify.success(`Hooray! We found ${allFreeImg} images`);
       const endImg = allFreeImg / perPage
       if (endImg <= 1) {
-       Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")}
-      console.log(endImg);
+        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
+        btnLoadMore.style.display = 'none';
+      }
       galleryConteiner.innerHTML = '';
       const hits = data.hits;
       markupCards(hits);
-      btnLoadMore.removeAttribute(`disabled`, true);
+    
+     loadMoreBtn.style.display = 'block';
       
     }); 
  
@@ -81,5 +83,6 @@ function markupCards(hits) {
 </a>`;
         }).join('');
   galleryConteiner.insertAdjacentHTML('beforeend', markup);
+  const lightbox = new SimpleLightbox('.gallery a');
 };
-const lightbox = new SimpleLightbox('.gallery a');
+

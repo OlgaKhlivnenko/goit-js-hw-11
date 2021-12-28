@@ -4,24 +4,15 @@
 html {
   box-sizing: border-box;
 }
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+
+
 p {
   margin: 0;
 }
 img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -32,12 +23,6 @@ body {
   background-color: #fafafa;
   color: #212121;
   margin: 0px;
-}
-li {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
 }
 button {
   margin: 0;
@@ -50,7 +35,7 @@ button {
   cursor: pointer;
 }
 .load-more {
-  display: block;
+  display: none;
   margin-left: auto;
   margin-right: auto;
 }
@@ -59,7 +44,6 @@ button {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   background: #989dcf;
   margin-bottom: 50px;
 }
@@ -69,61 +53,45 @@ input {
   height: 32x;
   background-color: #f1f1f1;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-sizing: border-box;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   border-radius: 4px;
   outline: none;
   color: #070707;
   font-size: 16px;
   line-height: 1.25;
 }
-.info {
+
+
+
+.gallery {
   display: flex;
-  justify-content: centre;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  padding-top: 60px;
+}
+.gallery__item {
+   text-decoration: none;
+  
+}
+.photo-card {
+ margin-right: 10px;
+margin-bottom: 10px;
+box-shadow: 0px 1px 3px #070707;
+ }
+ .info {
+  display: flex;
+  justify-content: space-around;
   text-decoration: none;
-  list-style: none;
 }
 .info-item {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  
   align-items: center;
+  text-align: center;
   padding-right: 10px;
   color: #070707;
 }
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  /* flex-grow: 1; */
-  margin: 0;
-  padding: 0;
-  padding-top: 60px;
-  margin-right: auto;
-  margin-left: auto;
+.img-item{
+   width: 300px;
+   height: 200px;
 }
 
-.photo-card {
-  flex-basis: calc((100% - 2 * 10px) / 3);
-  box-shadow: 0px 1px 3px #070707;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-.photo-card:nth-child(2n) {
-  margin-right: 10px;
-}
-.photo-card:nth-child(3n) {
-  margin-right: 0;
-}
-.photo-card:nth-child(n + 6) {
-  margin-right: 0;
-}
-.gallery__item {
-  height: auto;
-  width: 100%;
-  text-decoration: none;
-  list-style: none;
-}
-.img-item {
-  height: 200px;
-}
