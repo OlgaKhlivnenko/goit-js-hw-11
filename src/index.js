@@ -13,7 +13,7 @@ const apiService = new APIService;
 
 formEl.addEventListener('submit', onSearch);
 btnLoadMore.addEventListener('click', onLoadMore);
-btnLoadMore.classList.add('.is-hidden');
+btnLoadMore.classList.add('is-hidden');
 
 function onSearch(evt) {
   evt.preventDefault();
@@ -23,7 +23,7 @@ function onSearch(evt) {
   if (valueInput === '') {
     return 
   }
- btnLoadMore.classList.add('.is-hidden');
+ btnLoadMore.classList.add('is-hidden');
 
   apiService.resetPage();
   apiService.fetchHits()
@@ -34,15 +34,15 @@ function onSearch(evt) {
       const endImg = allFreeImg / perPage
       if (endImg <= 1) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
-        btnLoadMore.classList.add('.is-hidden');
+        btnLoadMore.classList.add('is-hidden');
 
       }
       galleryConteiner.innerHTML = '';
       const hits = data.hits;
       markupCards(hits);
     
-     btnLoadMore.classList.remove('.is-hidden');
-      
+     btnLoadMore.classList.remove('is-hidden');
+      btnLoadMore.classList.add('.load-more');
     }); 
  
 }
