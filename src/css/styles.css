@@ -35,7 +35,7 @@ button {
   cursor: pointer;
 }
 .load-more {
-  display: none;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
@@ -59,9 +59,6 @@ input {
   font-size: 16px;
   line-height: 1.25;
 }
-
-
-
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -69,7 +66,6 @@ input {
 }
 .gallery__item {
    text-decoration: none;
-  
 }
 .photo-card {
  margin-right: 10px;
@@ -94,4 +90,6 @@ box-shadow: 0px 1px 3px #070707;
    width: 300px;
    height: 200px;
 }
-
+.is-hidden{
+  display: none;
+}
