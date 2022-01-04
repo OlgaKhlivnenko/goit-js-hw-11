@@ -11,6 +11,7 @@ const btnLoadMore = document.querySelector('.load-more');
 const galleryConteiner = document.querySelector('.gallery');
 const apiService = new APIService;
 
+
 formEl.addEventListener('submit', onSearch);
 btnLoadMore.addEventListener('click', onLoadMore);
 btnLoadMore.classList.add('is-hidden');
@@ -28,31 +29,37 @@ function onSearch(evt) {
   apiService.resetPage();
   apiService.fetchHits()
     .then(data => {
-      const allFreeImg = data.totalHits;
-      const perPage = 40;
-      Notiflix.Notify.success(`Hooray! We found ${allFreeImg} images`);
-      const endImg = allFreeImg / perPage
-      if (endImg <= 1) {
-        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
-        btnLoadMore.classList.add('is-hidden');
-
-      }
+      console.log(data)
+      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images`);
+      endFreeImg(data)
       galleryConteiner.innerHTML = '';
-      const hits = data.hits;
-      markupCards(hits);
-    
-     btnLoadMore.classList.remove('is-hidden');
-      btnLoadMore.classList.add('.load-more');
+      markupCards(data.hits);
     }); 
  
 }
+
 function onLoadMore() {
   apiService.fetchHits().then(data => {
+    endFreeImg(data)
     markupCards(data.hits)
     lightbox.refresh()
   });
 }
-
+function endFreeImg(data) {
+ 
+  const allFreeImg = data.totalHits;
+  const perPage = 40 * apiService.page;
+      const endImg = allFreeImg / perPage
+      console.log(endImg)
+      if (endImg <= 0.5125) {
+        btnLoadMore.classList.add('is-hidden');
+        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
+      }
+      if (endImg > 0.5125) {
+      btnLoadMore.classList.remove('is-hidden');
+      btnLoadMore.classList.add('.load-more');
+      }
+}
 function markupCards(hits) {
    
   const markup = hits
